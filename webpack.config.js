@@ -1,9 +1,32 @@
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const path = require('path')
 
 
 module.exports ={
+
+    // entry:{
+    //     app: "./src/index.js",
+
+    // },
+    // output: {
+    //     path: path.resolve(__dirname, "dist"),
+    //     filename: "main.js"
+    // },
+
+    // node: "development"
+
+
+    // entry: "src/js/index.js", 
+    // output:{
+    //     path: path.resolve(__dirname, 'dist/js'),
+    //     filename: 'bundle.js'
+
+    // },
+    // node: 'development'
+
+
 
     module: {
         rules: [
