@@ -5,36 +5,21 @@ const path = require('path')
 
 
 module.exports ={
+    entry: ['babel-polyfill', "./src/index.js"],
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js'
+    },
+    devServer: {
+        contentBase: './dist'
+    },
 
-    // entry:{
-    //     app: "./src/index.js",
-
-    // },
-    // output: {
-    //     path: path.resolve(__dirname, "dist"),
-    //     filename: "main.js"
-    // },
-
-    // node: "development"
-
-
-    // entry: "src/js/index.js", 
-    // output:{
-    //     path: path.resolve(__dirname, 'dist/js'),
-    //     filename: 'bundle.js'
-
-    // },
-    // node: 'development'
 
 
 
     module: {
         rules: [
-            {
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"]
-
-            },
+          
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -43,6 +28,11 @@ module.exports ={
                         loader: "babel-loader"
                     }
                 ]
+            },
+            {
+                test: /\.css$/,z
+                use: ["style-loader", "css-loader"]
+
             },
             {
                 test: /\.html$/,
