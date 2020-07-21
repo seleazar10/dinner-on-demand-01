@@ -24,7 +24,6 @@ export const displayLoadingPic = () => {
 
 
 export const renderLoader = parent => {
-
     parent.style.display = "inline";
 
     // //html markup ----------------//
@@ -38,7 +37,6 @@ export const renderLoader = parent => {
 
 
 export const clearLoader = ()=>{
-
     elements.loadingPic.style.display = "none";
 
     // //Remove loading icon completely --------------//
