@@ -1,7 +1,8 @@
-import './styles/main.css'
-import "./images/favicon.png"
+import './styles/main.css';
+import "./images/favicon.png";
 import Search from "./models/Search";
-
+import {elements} from "./views/base";
+import * as searchView from "./views/searchView"
 
 /*
 Global state of the app
@@ -17,36 +18,45 @@ const state = {};
 
 const controlSearch = async () => {
 
+
+    console.log('started')
+
     // 1. get search from view
-    const mySearch = document.querySelector('.search__field').value
-    // const mySearch = 'pizza'
+    const mySearch = searchView.getInput();
     console.log(mySearch)
+    // const mySearch = 'pizza'
+    // console.log(mySearch)
 
     if (mySearch) {
-
         //2. new search object and add to state
         state.search = new Search(mySearch)
-        console.log(state.search)
+        // console.log(state.search)
 
-        //3. Prepare UI for result
+        //3. Prepare UI for result.   
+        searchView.clearInput();
+        searchView.clearResults()
 
 
         //4. Search for recipes
         await state.search.getResults();
 
-
         //5. Render result in UI
         console.log("--------------------")
-
         console.log(state.search.result)
+        searchView.renderResults(state.search.result)
+
 
     }else{
-        console.log('problem')
+        console.log('search bar is empty. Please complete')
     }
 }
 
-document.querySelector('.search').addEventListener('submit', (e) => {
+
+
+
+elements.searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
+    console.log('submitted')
     controlSearch()
 })
 

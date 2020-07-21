@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const path = require('path')
 
 
-module.exports ={
+module.exports = {
     entry: ['babel-polyfill', "./src/index.js"],
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -19,7 +19,7 @@ module.exports ={
 
     module: {
         rules: [
-          
+
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -39,22 +39,22 @@ module.exports ={
                 use: [
                     {
                         loader: "html-loader",
-                        options: { minimize: true}
+                        options: { minimize: true }
                     }
                 ]
             },
             {
-            test: /\.(png|svg|jpg|gif)$/,
-            use: [
-                {
-                    loader: "file-loader"
-                }
-            ]
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                    {
+                        loader: "file-loader"
+                    }
+                ]
 
             }
         ]
     },
-    plugins : [
+    plugins: [
         new HtmlWebPackPlugin({
             template: "./src/index.html",
             filename: "./index.html"
