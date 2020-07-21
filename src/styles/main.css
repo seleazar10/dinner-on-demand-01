@@ -143,6 +143,17 @@
   .link:visited {
     color: #968B87; }
   
+    .loading_logo{
+      height: 140px;
+      width: 140px;
+      position: relative;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      display: none;
+      /* animation: rotate 1.5s infinite linear; */
+    }
+
   .loader {
     margin: 5rem auto;
     text-align: center; }

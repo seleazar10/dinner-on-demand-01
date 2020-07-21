@@ -1,7 +1,8 @@
 import './styles/main.css';
 import Search from "./models/Search";
-import {elements} from "./views/base";
+import {elements, renderLoader, displayLoadingPic, clearLoader} from "./views/base";
 import * as searchView from "./views/searchView"
+
 
 /*
 Global state of the app
@@ -18,17 +19,26 @@ const controlSearch = async () => {
     console.log('control search async function called and started')
     // 1. get search from view
     const mySearch = searchView.getInput();
-    console.log(mySearch)
+    console.log(mySearch);
                 // const mySearch = 'pizza'
                 // console.log(mySearch)
     if (mySearch) {
         //2. new search object and add to state
-        state.search = new Search(mySearch)
+        state.search = new Search(mySearch);
                 // console.log(state.search)
 
         //3. Prepare UI for result.   
         searchView.clearInput();
-        searchView.clearResults()
+        searchView.clearResults();
+
+        console.log(elements.searchRes)
+
+        // displayLoadingPic()
+        // renderLoader(elements.searchRes)
+        
+        renderLoader(elements.loadingPic)
+
+
 
 
         //4. Search for recipes
@@ -38,6 +48,9 @@ const controlSearch = async () => {
         console.log("--------------------")
         console.log(state.search.result)
         console.log("--------------------")
+
+
+        clearLoader()
         searchView.renderResults(state.search.result)
 
 
