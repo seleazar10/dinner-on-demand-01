@@ -189,7 +189,10 @@ body {
 
 .loadbox {
   margin: 5rem auto;
+  margin-left: 20px;
   text-align: center;
+  display: none;
+
 }
 
 .loading_logo {
@@ -199,7 +202,6 @@ body {
   transform-origin: 44% 50%;
   margin-left: 3rem;
   animation: rotate 1.9s infinite linear;
-  display: none;
 }
 
 @keyframes rotate {

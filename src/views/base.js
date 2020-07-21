@@ -9,7 +9,7 @@ export const elements = {
     searchInput: document.querySelector('.search__field'),
     searchResList: document.querySelector('.results__list'),
     searchRes: document.querySelector('.results'),
-    loadingPic: document.querySelector('.loading_logo')
+    loadingPic: document.querySelector('.loadbox')
 };
 
 export const elementStrings ={
@@ -17,14 +17,14 @@ export const elementStrings ={
     loader: 'loader'
 }
 
-export const displayLoadingPic = () => {
-    elements.loadingPic.style.display = "inline";
+// export const displayLoadingPic = () => {
+//     elements.loadingPic.style.display = "inline-block";
 
-}
+// }
 
 
 export const renderLoader = parent => {
-    parent.style.display = "inline";
+    parent.style.display = "inline-block";
 
     // //html markup ----------------//
     // const loader =`
