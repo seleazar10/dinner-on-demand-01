@@ -3,31 +3,27 @@ import { elements } from "./base";
 export const getInput = () => elements.searchInput.value;
 
 export const clearInput = () => { 
-
     elements.searchInput.value = " ";
 };
 
 export const clearResults = () => {
-
     elements.searchResList.innerHTML = " ";
-
 };
 
 //function to now let title run over
-
 const limitRecipeTitle = (title, limit = 17) => {
     const newTitle = [];
     if (title.length > limit) {
+        console.log(title.split(' '))
         title.split(' ').reduce((acc, cur) => {
+            // console.log(acc)
+            // console.log(cur)
             if(acc + cur.length <= limit) {
                 newTitle.push(cur)
             }
             return acc + cur.length;
-
         }, 0);
-
-        return `${newTitle.join(' ')} ...`;
-
+     return `${newTitle.join(' ')} ...`;
     }
     return title;
 }
@@ -35,7 +31,6 @@ const limitRecipeTitle = (title, limit = 17) => {
 //display recipes on screen
 
 const renderRecipe = recipe => {
-
     const markup = `
                 <li>
                     <a class="results__link " href="#${recipe.recipe_id}">
@@ -49,17 +44,12 @@ const renderRecipe = recipe => {
                     </a>
                 </li>
     `;
-
     elements.searchResList.insertAdjacentHTML('beforeend', markup)
-
-
-
 };
 
 export const renderResults = recipes => {
     // console.log(recipes)
     recipes.forEach(renderRecipe);;
-
 };
 
 

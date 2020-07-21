@@ -1,5 +1,4 @@
 import './styles/main.css';
-import "./images/favicon.png";
 import Search from "./models/Search";
 import {elements} from "./views/base";
 import * as searchView from "./views/searchView"
@@ -11,26 +10,21 @@ Global state of the app
 - Shoping list object
 - Liked recipes
 
-
 */
 
 const state = {};
 
 const controlSearch = async () => {
-
-
-    console.log('started')
-
+    console.log('control search async function called and started')
     // 1. get search from view
     const mySearch = searchView.getInput();
     console.log(mySearch)
-    // const mySearch = 'pizza'
-    // console.log(mySearch)
-
+                // const mySearch = 'pizza'
+                // console.log(mySearch)
     if (mySearch) {
         //2. new search object and add to state
         state.search = new Search(mySearch)
-        // console.log(state.search)
+                // console.log(state.search)
 
         //3. Prepare UI for result.   
         searchView.clearInput();
@@ -43,6 +37,7 @@ const controlSearch = async () => {
         //5. Render result in UI
         console.log("--------------------")
         console.log(state.search.result)
+        console.log("--------------------")
         searchView.renderResults(state.search.result)
 
 
