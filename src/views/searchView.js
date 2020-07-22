@@ -8,6 +8,7 @@ export const clearInput = () => {
 
 export const clearResults = () => {
     elements.searchResList.innerHTML = " ";
+    elements.searchResPages.innerHTML = " ";
 };
 
 
@@ -59,12 +60,19 @@ const renderRecipe = recipe => {
 
 const createButton = (page, type) => {
 
+    let goToThisPage;
+    if(type ==="prev"){
+        goToThisPage = page - 1;
+    }else{
+        goToThisPage = page + 1;
+    }
+
     const markupFirst = 
     `
-        <button class="btn-inline results__btn--${type}" data-goto=${page +1}>
+        <button class="btn-inline results__btn--${type}" data-goto=${goToThisPage}>
 
             <i class="fas fa-arrow-right"></i>
-            <span>Page ${page +1}</span>
+            <span>Page ${goToThisPage}</span>
 
         </button>
     `
@@ -72,23 +80,6 @@ const createButton = (page, type) => {
 
 
 }
-
-const createButtonBoth = (page) => {
-    const markupBoth = 
-    `
-        <button class="btn-inline results__btn--prev" data-goto=${page -1}>
-            <i class="fas fa-arrow-left"></i>
-            <span>Page ${page - 1}</span>
-        </button>
-        <button class="btn-inline results__btn--next" data-goto=${page +1}>
-            <i class="fas fa-arrow-right"></i>
-            <span>Page ${page + 1}</span>
-        </button>
-    `
-    return markupBoth
-}
-
-
 
 
 const renderButtons = (page, numResults, resPerPage) => {
@@ -103,18 +94,22 @@ const renderButtons = (page, numResults, resPerPage) => {
         //only button to go to next page
         button = createButton(page, "next");
     } else if (page < pages) {
-        //both buttons
-        button = createButtonBoth(page)       
+        //both buttons       
+        button = 
+        `
+        ${createButton(page, "next")}
+        ${createButton(page, "prev")}
+        `
     }else if (page === pages && pages > 1) {
         //only button to go to prev page
         button = createButton(page, "prev");
     }
-    elements.searchResPages.insertAdjacentHTML('beforeend', button)
+    elements.searchResPages.insertAdjacentHTML('afterbegin', button)
 }
 
 
 
-export const renderResults = (recipes, page = 2, resPerPage = 10) => {
+export const renderResults = (recipes, page = 1, resPerPage = 10) => {
     const start = (page - 1) * resPerPage;
     const end = page * resPerPage;
     recipes.slice(start, end).forEach(renderRecipe);
