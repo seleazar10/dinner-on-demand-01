@@ -201,7 +201,7 @@ body {
   fill: #F59A83;
   transform-origin: 44% 50%;
   margin-left: 3rem;
-  animation: rotate 1.9s infinite linear;
+  /* animation: rotate 1.9s infinite linear; */
 }
 
 @keyframes rotate {

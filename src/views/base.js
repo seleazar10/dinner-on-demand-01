@@ -9,18 +9,15 @@ export const elements = {
     searchInput: document.querySelector('.search__field'),
     searchResList: document.querySelector('.results__list'),
     searchRes: document.querySelector('.results'),
-    loadingPic: document.querySelector('.loadbox')
+    loadingPic: document.querySelector('.loadbox'),
+    searchResPages: document.querySelector('.results__pages')
+
 };
 
 export const elementStrings ={
     //this is a class. it will be called as elementStringsloader
     loader: 'loader'
 }
-
-// export const displayLoadingPic = () => {
-//     elements.loadingPic.style.display = "inline-block";
-
-// }
 
 
 export const renderLoader = parent => {

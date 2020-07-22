@@ -31,15 +31,8 @@ const controlSearch = async () => {
         searchView.clearInput();
         searchView.clearResults();
 
-        console.log(elements.searchRes)
-
-        // displayLoadingPic()
-        // renderLoader(elements.searchRes)
-        
+        console.log(elements.searchRes)        
         renderLoader(elements.loadingPic)
-
-
-
 
         //4. Search for recipes
         await state.search.getResults();
@@ -48,7 +41,6 @@ const controlSearch = async () => {
         console.log("--------------------")
         console.log(state.search.result)
         console.log("--------------------")
-
 
         clearLoader()
         searchView.renderResults(state.search.result)
