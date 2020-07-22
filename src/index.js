@@ -20,12 +20,11 @@ const controlSearch = async () => {
     // 1. get search from view
     const mySearch = searchView.getInput();
     console.log(mySearch);
-                // const mySearch = 'pizza'
-                // console.log(mySearch)
+                
     if (mySearch) {
         //2. new search object and add to state
         state.search = new Search(mySearch);
-                // console.log(state.search)
+                
 
         //3. Prepare UI for result.   
         searchView.clearInput();
@@ -45,7 +44,6 @@ const controlSearch = async () => {
         clearLoader()
         searchView.renderResults(state.search.result)
 
-
     }else{
         console.log('search bar is empty. Please complete')
     }
@@ -61,14 +59,11 @@ elements.searchForm.addEventListener('submit', (e) => {
 })
 
 elements.searchResPages.addEventListener('click', e => {
-    // console.log(e.target);
     const btn = e.target.closest('.btn-inline')
-    console.log(btn)
     if(btn){
         const goToPage = parseInt(btn.dataset.goto, 10);
         searchView.clearResults();
-        searchView.renderResults(state.search.result, goToPage)
-        console.log(goToPage)
+        searchView.renderResults(state.search.result, goToPage)   
     }
 })
 

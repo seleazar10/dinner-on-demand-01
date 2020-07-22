@@ -14,11 +14,6 @@ export const clearResults = () => {
 
 
 //display recipes on screen
-
-
-
-
-
 //function to now let title run over
 const limitRecipeTitle = (title, limit = 17) => {
     const newTitle = [];
@@ -77,16 +72,14 @@ const createButton = (page, type) => {
         </button>
     `
     return markupFirst
-
-
 }
 
 
 const renderButtons = (page, numResults, resPerPage) => {
 
     const pages = Math.ceil(numResults / resPerPage);
-        console.log(pages)
-        console.log(page)
+        // console.log(pages)
+        // console.log(page)
 
     let button;
 
