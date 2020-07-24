@@ -35,6 +35,7 @@ const limitRecipeTitle = (title, limit = 17) => {
 
 const renderRecipe = recipe => {
     const markup = `
+    <div class="recipeBox">
                 <li>
                     <a class="results__link " href="#${recipe.recipe_id}">
                         <figure class="results__fig">
@@ -46,8 +47,9 @@ const renderRecipe = recipe => {
                         </div>
                     </a>
                 </li>
+    </div>
     `;
-    elements.searchResList.insertAdjacentHTML('beforeend', markup)
+    elements.searchResList.insertAdjacentHTML('afterbegin', markup)
 };
 
 

@@ -1,7 +1,8 @@
 import './styles/main.css';
 import Search from "./models/Search";
-import {elements, renderLoader, displayLoadingPic, clearLoader} from "./views/base";
-import * as searchView from "./views/searchView"
+import { elements, renderLoader, displayLoadingPic, clearLoader } from "./views/base";
+import * as searchView from "./views/searchView";
+import Recipe from "./models/Recipe";
 
 
 /*
@@ -20,34 +21,45 @@ const controlSearch = async () => {
     // 1. get search from view
     const mySearch = searchView.getInput();
     console.log(mySearch);
-                
+
     if (mySearch) {
         //2. new search object and add to state
         state.search = new Search(mySearch);
-                
+
 
         //3. Prepare UI for result.   
         searchView.clearInput();
         searchView.clearResults();
 
-        console.log(elements.searchRes)        
+        console.log(elements.searchRes)
         renderLoader(elements.loadingPic)
 
-        //4. Search for recipes
-        await state.search.getResults();
 
-        //5. Render result in UI
-        console.log("--------------------")
-        console.log(state.search.result)
-        console.log("--------------------")
+        try{
 
-        clearLoader()
-        searchView.renderResults(state.search.result)
+            //4. Search for recipes
+            await state.search.getResults();
+            
+            //5. Render result in UI
+            console.log("--------------------")
+            console.log(state.search.result)
+            console.log("--------------------")
+            
+            clearLoader(elements.loadingPic)
+            searchView.renderResults(state.search.result)
+            
+            
+        }catch(error){
+            console.log(`erro in search controller ${error}`)
+            clearLoader(elements.loadingPic)
+            
+        }
 
-    }else{
-        console.log('search bar is empty. Please complete')
-    }
+
+    } 
 }
+
+
 
 
 
@@ -59,13 +71,74 @@ elements.searchForm.addEventListener('submit', (e) => {
 })
 
 elements.searchResPages.addEventListener('click', e => {
+
     const btn = e.target.closest('.btn-inline')
-    if(btn){
+    if (btn) {
         const goToPage = parseInt(btn.dataset.goto, 10);
         searchView.clearResults();
-        searchView.renderResults(state.search.result, goToPage)   
+        searchView.renderResults(state.search.result, goToPage)
     }
+
+    t
+
 })
+
+
+//recipe control
+
+const controlRecipe = async () => {
+    //get ID from URL
+    const id = window.location.hash.replace("#", " ");
+    console.log(id)
+    console.log(typeof (id))
+
+    if (id) {
+
+        //prepare UI for chnages
+
+
+        //create new recipe object
+
+        state.recipe = new Recipe(id)
+
+
+
+        //get recipe data
+
+        try {
+            await state.recipe.getRecipe()
+
+            //calucalate serving anf time
+            await state.recipe.calcTime()
+            await state.recipe.calcSerbings()
+
+            //render recipe
+            console.log("----------------------------------------------------")
+            console.log(state.recipe)
+            console.log(state.recipe.resRecipe)
+            console.log("----------------------------------------------------")
+
+            console.log(`${state.recipe.title}`)
+            console.log(`${state.recipe.author}`)
+            console.log(`image: ${state.recipe.img}`)
+            console.log(`${state.recipe.url}`)
+            console.log(`${state.recipe.ingredients}`)
+
+        } catch (err) {
+            console.log(err)
+            console.log('error on recipe controller')
+        }
+
+    }
+
+}
+
+
+// window.addEventListener('hashchange',  controlRecipe)
+// window.addEventListener('load',  controlRecipe)
+
+['hashchange', 'load'].forEach(element => window.addEventListener(element, controlRecipe));
+
 
 
 

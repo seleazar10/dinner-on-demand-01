@@ -6,7 +6,8 @@ export const elements = {
     searchResList: document.querySelector('.results__list'),
     searchRes: document.querySelector('.results'),
     loadingPic: document.querySelector('.loadbox'),
-    searchResPages: document.querySelector('.results__pages')
+    searchResPages: document.querySelector('.results__pages'),
+    recipeBox: document.querySelector('.recipeBox')
 
 };
 
@@ -14,6 +15,6 @@ export const renderLoader = parent => {
     parent.style.display = "inline-block";
 }
 
-export const clearLoader = () => {
-    elements.loadingPic.style.display = "none";
+export const clearLoader = (parent) => {
+    parent.style.display = "none";
 }
