@@ -7,7 +7,8 @@ export const elements = {
     searchRes: document.querySelector('.results'),
     loadingPic: document.querySelector('.loadbox'),
     searchResPages: document.querySelector('.results__pages'),
-    recipeBox: document.querySelector('.recipeBox')
+    recipeBox: document.querySelector('.recipeBox'),
+    recipe: document.querySelector('.recipe')
 
 };
 

@@ -4,6 +4,8 @@ export const getInput = () => elements.searchInput.value;
 
 export const clearInput = () => {
     elements.searchInput.value = " ";
+    elements.searchInput.style.boxShadow = "5px 5px #f7ab85"
+
 };
 
 export const clearResults = () => {
@@ -57,18 +59,21 @@ const renderRecipe = recipe => {
 
 const createButton = (page, type) => {
 
-    let goToThisPage;
+    let goToThisPage, arrDirect;
     if(type ==="prev"){
         goToThisPage = page - 1;
+        arrDirect = "left";
     }else{
         goToThisPage = page + 1;
+        arrDirect = "right";
     }
 
     const markupFirst = 
     `
         <button class="btn-inline results__btn--${type}" data-goto=${goToThisPage}>
 
-            <i class="fas fa-arrow-right"></i>
+            
+            <i class="fa fa-arrow-${arrDirect}"></i>
             <span>Page ${goToThisPage}</span>
 
         </button>

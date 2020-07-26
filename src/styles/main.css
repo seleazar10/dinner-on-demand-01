@@ -164,8 +164,14 @@ body {
 }
 
 .btn-tiny:not(:last-child) {
-  margin-right: .3rem;
+  margin-right: 1.5rem;
 }
+
+.fa{
+  margin: 1rem;
+}
+
+
 
 .heading-2 {
   font-size: 1.8rem;

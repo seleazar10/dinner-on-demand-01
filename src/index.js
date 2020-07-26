@@ -1,8 +1,9 @@
 import './styles/main.css';
 import Search from "./models/Search";
-import { elements, renderLoader, displayLoadingPic, clearLoader } from "./views/base";
-import * as searchView from "./views/searchView";
 import Recipe from "./models/Recipe";
+import * as searchView from "./views/searchView";
+import * as recipeView from "./views/recipeView";
+import { elements, renderLoader, clearLoader } from "./views/base";
 
 
 /*
@@ -35,33 +36,29 @@ const controlSearch = async () => {
         renderLoader(elements.loadingPic)
 
 
-        try{
+        try {
 
             //4. Search for recipes
             await state.search.getResults();
-            
+
             //5. Render result in UI
             console.log("--------------------")
             console.log(state.search.result)
             console.log("--------------------")
-            
+
             clearLoader(elements.loadingPic)
             searchView.renderResults(state.search.result)
-            
-            
-        }catch(error){
+
+
+        } catch (error) {
             console.log(`erro in search controller ${error}`)
             clearLoader(elements.loadingPic)
-            
+
         }
 
 
-    } 
+    }
 }
-
-
-
-
 
 
 elements.searchForm.addEventListener('submit', (e) => {
@@ -79,7 +76,7 @@ elements.searchResPages.addEventListener('click', e => {
         searchView.renderResults(state.search.result, goToPage)
     }
 
-    t
+    
 
 })
 
@@ -96,33 +93,31 @@ const controlRecipe = async () => {
 
         //prepare UI for chnages
 
+        // renderLoader(elements.recipe)
+
 
         //create new recipe object
-
         state.recipe = new Recipe(id)
 
-
-
-        //get recipe data
-
         try {
+            //get recipe data
             await state.recipe.getRecipe()
+            await state.recipe.parseIngredients()
 
             //calucalate serving anf time
             await state.recipe.calcTime()
-            await state.recipe.calcSerbings()
+            await state.recipe.calcServings()
+           
+            
+            //call recipe view to display infor of selected meal
+
+            await recipeView.dislayRecipe(state.recipe)
 
             //render recipe
-            console.log("----------------------------------------------------")
-            console.log(state.recipe)
-            console.log(state.recipe.resRecipe)
-            console.log("----------------------------------------------------")
+            // clearLoader(elements.recipe);
+            // await recipeView.renderRecipe(state.recipe)
+       
 
-            console.log(`${state.recipe.title}`)
-            console.log(`${state.recipe.author}`)
-            console.log(`image: ${state.recipe.img}`)
-            console.log(`${state.recipe.url}`)
-            console.log(`${state.recipe.ingredients}`)
 
         } catch (err) {
             console.log(err)
