@@ -8,12 +8,13 @@ export const elements = {
     loadingPic: document.querySelector('.loadbox'),
     searchResPages: document.querySelector('.results__pages'),
     recipeBox: document.querySelector('.recipeBox'),
-    recipe: document.querySelector('.recipe')
+    recipe: document.querySelector('.recipe'),
+    spinner: document.querySelector('.spinn')
 
 };
 
 export const renderLoader = parent => {
-    parent.style.display = "inline-block";
+    parent.style.display = "block";
 }
 
 export const clearLoader = (parent) => {

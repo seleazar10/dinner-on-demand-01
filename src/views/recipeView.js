@@ -1,5 +1,11 @@
 import { elements } from "./base";
 
+
+
+export const clearResult = () =>{
+    elements.recipe.innerHTML = " "
+}
+
 const createIngredient = (eachIngredient)=> {
 
     const markupIngrd = 

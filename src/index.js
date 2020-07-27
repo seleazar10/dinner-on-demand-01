@@ -92,8 +92,7 @@ const controlRecipe = async () => {
     if (id) {
 
         //prepare UI for chnages
-
-        // renderLoader(elements.recipe)
+        renderLoader(elements.spinner)
 
 
         //create new recipe object
@@ -108,14 +107,11 @@ const controlRecipe = async () => {
             await state.recipe.calcTime()
             await state.recipe.calcServings()
            
-            
-            //call recipe view to display infor of selected meal
-
+            //render recipe
+            clearLoader(elements.spinner);
+            await recipeView.clearResult()          
             await recipeView.dislayRecipe(state.recipe)
 
-            //render recipe
-            // clearLoader(elements.recipe);
-            // await recipeView.renderRecipe(state.recipe)
        
 
 
@@ -131,7 +127,6 @@ const controlRecipe = async () => {
 
 // window.addEventListener('hashchange',  controlRecipe)
 // window.addEventListener('load',  controlRecipe)
-
 ['hashchange', 'load'].forEach(element => window.addEventListener(element, controlRecipe));
 
 
