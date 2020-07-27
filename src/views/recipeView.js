@@ -37,7 +37,7 @@ const createIngredient = (eachIngredient)=> {
             </div>
         </li>
     `
-    console.log(markupIngrd)
+    // console.log(markupIngrd)
 
     return markupIngrd
 
@@ -88,7 +88,7 @@ export const dislayRecipe = chosenRecipe => {
 
                 </ul>
 
-                <button class="btn-small recipe__btn">
+                <button class="btn-small recipe__btn  recipe__btn--add">
                 <i class="fa fa-shopping-cart fa-2x"></i>
 
                     <span>Add to shopping list</span>

@@ -4,6 +4,7 @@ import Recipe from "./models/Recipe";
 import List from "./models/List";
 import * as searchView from "./views/searchView";
 import * as recipeView from "./views/recipeView";
+import * as listView from "./views/listView";
 import { elements, renderLoader, clearLoader } from "./views/base";
 
 
@@ -136,6 +137,21 @@ const controlRecipe = async () => {
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
 
 
+///List Controller
+const controlList = () =>
+{
+    console.log('activated')
+    //create a new list if there is none yet
+    if(!state.list) state.list = new List()
+
+    //add each ingredient to the list
+    console.log( state.recipe.ingredients)
+    state.recipe.ingredients.forEach(el =>{
+        console.log(el.count, el.unit, el.ingredient)
+       const item = state.list.addItem(el.count, el.unit, el.ingredient);
+       listView.renderItemList(item)
+    })
+}
 //handling recipe button clicks
 
 elements.recipe.addEventListener('click', e=>{
@@ -144,18 +160,25 @@ elements.recipe.addEventListener('click', e=>{
         if(state.recipe.servings>1){
         state.recipe.updateServings('dec')
         recipeView.updateServingsIngredients(state.recipe)
+        console.log('dec')
         }
 
     }else if(e.target.matches(".btn-increase, .btn-increase *")){
         state.recipe.updateServings('inc') 
         recipeView.updateServingsIngredients(state.recipe)
+        console.log('inc')
 
+
+    }else if(e.target.matches(".recipe__btn--add, .recipe__btn--add *")){
+        console.log('clicked')
+        controlList()
+        
     }
     // console.log(state.recipe)
-    return state.recipe
+    // return state.recipe
 })
 
-window.l = new List()
+// window.l = new List()
 
 
 
