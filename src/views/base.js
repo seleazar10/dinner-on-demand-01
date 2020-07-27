@@ -9,7 +9,8 @@ export const elements = {
     searchResPages: document.querySelector('.results__pages'),
     recipeBox: document.querySelector('.recipeBox'),
     recipe: document.querySelector('.recipe'),
-    spinner: document.querySelector('.spinn')
+    spinner: document.querySelector('.spinn'),
+    shopping: document.querySelector('.shopping__list'),
 
 };
 
