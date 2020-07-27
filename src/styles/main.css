@@ -348,7 +348,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  background-image: linear-gradient(to right bottom, #FBDB89, #F48982);
+  background-image: linear-gradient(to right bottom, #fffbf2, #ffc3bf);
   opacity: .4;
 }
 
@@ -415,7 +415,9 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  background-image: linear-gradient(to right bottom, #FBDB89, #F48982);
+
+  /* main image after selection */
+  background-image: linear-gradient(to right bottom, #fffaee63, #fff7f700);
   opacity: .6;
 }
 

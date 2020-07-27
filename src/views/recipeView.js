@@ -1,9 +1,26 @@
 import { elements } from "./base";
+import {Fraction} from "fractional";
 
 
 
 export const clearResult = () =>{
     elements.recipe.innerHTML = " "
+}
+
+const formatCount = count =>{
+    if(count){
+        const [int, dec] = count.toString().split('.').map(el => parseInt(el, 10))
+        if  (!dec) return count;
+        if(int === 0){
+            const fr = new Fraction(count);
+            return `${fr.numerator}/${fr.denominator}`;
+        }else{
+            const fr = new Fraction(count - int)
+            return `${int} ${fr.numerator}/${fr.denominator}`;
+        }
+    }
+    return "1"
+
 }
 
 const createIngredient = (eachIngredient)=> {
@@ -13,7 +30,7 @@ const createIngredient = (eachIngredient)=> {
         <li class="recipe__item">
             <i class="fa fa-check fa-2x"></i>
 
-            <div class="recipe__count">${eachIngredient.count}</div>
+            <div class="recipe__count">${formatCount(eachIngredient.count)}</div>
             <div class="recipe__ingredient">
                 <span class="recipe__unit">${eachIngredient.unit}</span>
                 ${eachIngredient.ingredient}
@@ -49,10 +66,10 @@ export const dislayRecipe = chosenRecipe => {
                     <span class="recipe__info-text"> servings</span>
 
                     <div class="recipe__info-buttons">
-                        <button class="btn-tiny">
+                        <button class="btn-tiny btn-decrease">
                         <i class="fa fa-minus-circle fa-2x"></i>
                         </button>
-                        <button class="btn-tiny"> 
+                        <button class="btn-tiny btn-increase"> 
                         <i class="fa fa-plus-circle fa-2x"></i>
                         </button>
                     </div>
@@ -97,4 +114,18 @@ export const dislayRecipe = chosenRecipe => {
     `
 
     elements.recipe.insertAdjacentHTML('afterbegin', markup)
+}
+
+export const updateServingsIngredients = recipe =>{
+
+    //update the serving
+    document.querySelector('.recipe__info-data--people').textContent = recipe.servings;
+
+    //update ingredients
+    const countElements = Array.from(document.querySelectorAll('.recipe__count'));
+    countElements.forEach((el, i) => {
+        el.textContent = formatCount(recipe.ingredients[i].count);
+        console.log(el)
+    });
+
 }
