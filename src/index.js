@@ -18,6 +18,8 @@ Global state of the app
 */
 
 const state = {};
+window.state = state; 
+
 
 const controlSearch = async () => {
     console.log('control search async function called and started')
@@ -152,7 +154,27 @@ const controlList = () =>
        listView.renderItemList(item)
     })
 }
-//handling recipe button clicks
+
+//handle delte and update list titem event
+elements.shopping.addEventListener('click', e=>{
+    const id = e.target.closest(".shopping__item").dataset.itemid
+
+    //delete
+    if(e.target.matches('.shopping__delete, .shopping__delete *')){
+    
+     //delete from UI
+    state.list.deleteItem(id)
+    listView.deleteItem(id)
+
+    //handle count udate
+    }else if(e.target.matches('.shopping__count-value')){
+        const val = parseFloat(e.target.value, 10);
+        state.list.updateCount(id, val)
+    }
+})
+
+
+//handling recipe button 
 
 elements.recipe.addEventListener('click', e=>{
     if(e.target.matches(".btn-decrease, .btn-decrease *")){
