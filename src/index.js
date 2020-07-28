@@ -3,10 +3,10 @@ import Search from "./models/Search";
 import Recipe from "./models/Recipe";
 import List from "./models/List";
 import Likes from './models/Likes';
-import * as likesView from "./views/likesView";
 import * as searchView from "./views/searchView";
 import * as recipeView from "./views/recipeView";
 import * as listView from "./views/listView";
+import * as likesView from "./views/likesView";
 import { elements, renderLoader, clearLoader } from "./views/base";
 
 
@@ -125,7 +125,10 @@ const controlRecipe = async () => {
             //render recipe
             clearLoader(elements.spinner);
             await recipeView.clearResult()          
-            await recipeView.dislayRecipe(state.recipe)
+            await recipeView.dislayRecipe(
+                state.recipe,
+                state.likes.isLiked(id)
+                )
 
        
 
@@ -188,6 +191,8 @@ elements.shopping.addEventListener('click', e=>{
 /*
 //Likes controller
 */
+
+state.likes = new Likes()
 
 const controlLike = ()=>{
 
