@@ -104,10 +104,10 @@ const controlRecipe = async () => {
         //prepare UI for chnages
         renderLoader(elements.spinner)
 
-        // //highlight selected recipe
-        // if (state.search) {
-        //     await searchView.highlightSelected(id);
-        // }
+        //highlight selected recipe
+        if (state.search) {
+            await searchView.highlightSelected(id);
+        }
 
 
         //create new recipe object
@@ -206,15 +206,17 @@ const controlLike = ()=>{
             state.recipe.author,
             state.recipe.img
         );
-        console.log(state.likes)
+       
         //toggle like button
         likesView.toggleLikeBtn(true)
+        likesView.renderLike(newLike)
 
     }else{
         state.likes.deleteLike(currentID);
-        console.log(state.likes)
+       
           //toggle like button
           likesView.toggleLikeBtn(false)
+          likesView.deleteLike(currentID)
     }
 }
 
