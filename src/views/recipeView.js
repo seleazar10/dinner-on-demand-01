@@ -76,8 +76,7 @@ export const dislayRecipe = chosenRecipe => {
 
                 </div>
                 <button class="recipe__love">
-                <i class="fa fa-heart fa-2x"></i>
-
+                <i class="fa fa-heart fa-1x fav-heart"></i>
                 </button>
             </div>
 

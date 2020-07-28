@@ -3,6 +3,7 @@ import Search from "./models/Search";
 import Recipe from "./models/Recipe";
 import List from "./models/List";
 import Likes from './models/Likes';
+import * as likesView from "./views/likesView";
 import * as searchView from "./views/searchView";
 import * as recipeView from "./views/recipeView";
 import * as listView from "./views/listView";
@@ -146,6 +147,10 @@ const controlRecipe = async () => {
 /*
 //List controller
 */
+
+//testing
+state.list = new List()
+
 const controlList = () =>
 {
     console.log('activated')
@@ -153,7 +158,7 @@ const controlList = () =>
     if(!state.list) state.list = new List()
 
     //add each ingredient to the list
-    console.log( state.recipe.ingredients)
+    console.log(state.recipe.ingredients)
     state.recipe.ingredients.forEach(el =>{
         console.log(el.count, el.unit, el.ingredient)
        const item = state.list.addItem(el.count, el.unit, el.ingredient);
@@ -161,7 +166,7 @@ const controlList = () =>
     })
 }
 
-//handle delte and update list titem event
+//handle delete and update list titem event
 elements.shopping.addEventListener('click', e=>{
     const id = e.target.closest(".shopping__item").dataset.itemid
 
@@ -189,26 +194,22 @@ const controlLike = ()=>{
     if(!state.likes) state.likes = new Likes()
     const currentID = state.recipe.id;
 
-
     if(!state.likes.isLiked(currentID)){
-
         const newLike = state.likes.addLike(
             currentID,
             state.recipe.title,
             state.recipe.author,
             state.recipe.img
         );
-
         console.log(state.likes)
+        //toggle like button
+        likesView.toggleLikeBtn(true)
 
     }else{
-
         state.likes.deleteLike(currentID);
-
         console.log(state.likes)
-
-
-
+          //toggle like button
+          likesView.toggleLikeBtn(false)
     }
 }
 

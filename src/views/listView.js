@@ -13,7 +13,6 @@ export const renderItemList = (item) =>{
         <p class="shopping__description">${item.ingredient}</p>
         <button class="shopping__delete btn-tiny">
         <i class="fa fa-times-circle fa-2x"></i>
-
         </button>
     </li>
       

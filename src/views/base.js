@@ -11,6 +11,7 @@ export const elements = {
     recipe: document.querySelector('.recipe'),
     spinner: document.querySelector('.spinn'),
     shopping: document.querySelector('.shopping__list'),
+    likesMenu: document.querySelector('.likes__filed')
 
 };
 
