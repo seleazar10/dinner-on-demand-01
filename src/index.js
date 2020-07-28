@@ -2,6 +2,7 @@ import './styles/main.css';
 import Search from "./models/Search";
 import Recipe from "./models/Recipe";
 import List from "./models/List";
+import Likes from './models/Likes';
 import * as searchView from "./views/searchView";
 import * as recipeView from "./views/recipeView";
 import * as listView from "./views/listView";
@@ -21,6 +22,9 @@ const state = {};
 window.state = state; 
 
 
+/*
+//search controller
+*/
 const controlSearch = async () => {
     console.log('control search async function called and started')
     // 1. get search from view
@@ -84,8 +88,9 @@ elements.searchResPages.addEventListener('click', e => {
 
 })
 
-
-//recipe control
+/*
+//recipe controller
+*/
 
 const controlRecipe = async () => {
     //get ID from URL
@@ -138,8 +143,9 @@ const controlRecipe = async () => {
 // window.addEventListener('load',  controlRecipe)
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
 
-
-///List Controller
+/*
+//List controller
+*/
 const controlList = () =>
 {
     console.log('activated')
@@ -162,9 +168,9 @@ elements.shopping.addEventListener('click', e=>{
     //delete
     if(e.target.matches('.shopping__delete, .shopping__delete *')){
     
-     //delete from UI
-    state.list.deleteItem(id)
-    listView.deleteItem(id)
+        //delete from UI
+        state.list.deleteItem(id)
+        listView.deleteItem(id)
 
     //handle count udate
     }else if(e.target.matches('.shopping__count-value')){
@@ -174,8 +180,40 @@ elements.shopping.addEventListener('click', e=>{
 })
 
 
-//handling recipe button 
+/*
+//Likes controller
+*/
 
+const controlLike = ()=>{
+
+    if(!state.likes) state.likes = new Likes()
+    const currentID = state.recipe.id;
+
+
+    if(!state.likes.isLiked(currentID)){
+
+        const newLike = state.likes.addLike(
+            currentID,
+            state.recipe.title,
+            state.recipe.author,
+            state.recipe.img
+        );
+
+        console.log(state.likes)
+
+    }else{
+
+        state.likes.deleteLike(currentID);
+
+        console.log(state.likes)
+
+
+
+    }
+}
+
+
+//handling all recipe buttons click
 elements.recipe.addEventListener('click', e=>{
     if(e.target.matches(".btn-decrease, .btn-decrease *")){
 
@@ -192,15 +230,19 @@ elements.recipe.addEventListener('click', e=>{
 
 
     }else if(e.target.matches(".recipe__btn--add, .recipe__btn--add *")){
-        console.log('clicked')
+        console.log('List control clicked')
         controlList()
         
+    }else if(e.target.matches(".recipe__love, recipe__love *")){
+        //like controller
+        console.log('Like control clicked')
+        controlLike()
+
     }
     // console.log(state.recipe)
-    // return state.recipe
+    
 })
 
-// window.l = new List()
 
 
 
